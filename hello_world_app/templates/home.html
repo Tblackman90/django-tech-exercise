@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item List</title>
+</head>
+<body>
+
+    <h1>Add an Item</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Item</button>
+    </form>
+<h2>Search Items</h2>
+
+<form method="GET">
+    <input type="text" name="search" placeholder="Search by name">
+    <button type="submit">Search</button>
+</form>
+    <h2>Items</h2>
+
+    {% for item in items %}
+        <p>
+            <strong>{{ item.name }}</strong><br>
+            {{ item.description }}
+        </p>
+    {% empty %}
+        <p>No items have been added yet.</p>
+    {% endfor %}
+
+</body>
+</html>
