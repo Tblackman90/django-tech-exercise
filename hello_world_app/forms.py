@@ -1,8 +1,9 @@
 from django import forms
-from .models import Item
+from .models import Maintenance
 
-class ItemForm(forms.ModelForm):
+# form for adding maintenance records
+class MaintenanceForm(forms.ModelForm):
     class Meta:
-        model = Item
-        fields = ['name', 'description']
+        model = Maintenance
+        fields = ['service', 'date', 'mileage', 'notes']
 

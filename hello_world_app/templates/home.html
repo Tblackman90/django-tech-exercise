@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Item List</title>
+    <title>Motorcycle Maintenance Tracker</title>
 </head>
 <body>
 
-    <h1>Add an Item</h1>
+    <h1>Motorcycle Maintenance Tracker</h1>
+
+    <h2>Add Maintenance</h2>
 
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Add Item</button>
+        <button type="submit">Save Record</button>
     </form>
-<h2>Search Items</h2>
 
-<form method="GET">
-    <input type="text" name="search" placeholder="Search by name">
-    <button type="submit">Search</button>
-</form>
-    <h2>Items</h2>
+    <hr>
 
-    {% for item in items %}
+    <h2>Search Maintenance</h2>
+
+    <form method="GET">
+        <input type="text" name="search" placeholder="Search records">
+        <button type="submit">Search</button>
+    </form>
+
+    <hr>
+
+    <h2>Saved Records</h2>
+
+    {% for record in records %}
         <p>
-            <strong>{{ item.name }}</strong><br>
-            {{ item.description }}
+            <b>Service</b> {{ record.service }}<br>
+            <b>Date:</b> {{ record.date }}<br>
+            <b>Mileage:</b> {{ record.mileage }}<br>
+            <b>Notes:</b> {{ record.notes }}
         </p>
+        <hr>
     {% empty %}
-        <p>No items have been added yet.</p>
+        <p>No maintenance records found.</p>
     {% endfor %}
 
 </body>
